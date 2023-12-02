@@ -13,15 +13,30 @@ public class HomeController : Controller
         _logger = logger;
     }
 
-    public IActionResult Index()
+    public IActionResult AnaSayfa()
     {
+        ViewData["Title"] = "Ana Sayfa";
         return View();
     }
 
-    public IActionResult Privacy()
+    public IActionResult Kadro()
     {
+        ViewData["Title"] = "Doktor Kadrosu";
         return View();
     }
+
+    public IActionResult Hakkimizda()
+    {
+        ViewData["Title"] = "Hakkımızda";
+        return View();
+    }
+
+    public IActionResult Iletisim()
+    {
+        ViewData["Title"] = "İletişim";
+        return View();
+    }
+
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()

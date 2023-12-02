@@ -13,6 +13,7 @@ namespace HastaneRandevuSistemi.Controllers
         public IActionResult GirisYap()
         {
             ViewData["Title"] = "Giriş Yap";
+            ViewData["Css"] = "~/css/GirisYap.css";
             return View();
         }
 

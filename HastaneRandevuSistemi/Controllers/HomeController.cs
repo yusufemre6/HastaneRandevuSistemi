@@ -16,6 +16,7 @@ public class HomeController : Controller
     public IActionResult AnaSayfa()
     {
         ViewData["Title"] = "Ana Sayfa";
+        ViewData["Css"] = "~/css/AnaSayfa.css";
         return View();
     }
 

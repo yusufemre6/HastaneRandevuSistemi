@@ -1,6 +1,44 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-
+﻿<div class="wrapper">
+    <div class="logo">
+        <img src="~/img/hospital-building.png" alt="">
+    </div>
+    <div class="text-center mt-4 name">
+        Saü Hastane
+    </div>
+    <form class="p-3 mt-3" method="post">
+        <div class="form-field d-flex align-items-center">
+            <input type="text" placeholder="Adınız">
+            <input type="text" placeholder="Soyadınız">
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <label class="text-secondary" for="dogum_tarihi">Doğum Tarihi</label>
+            <table class="mx-4 my-2">
+                <tbody>
+                    <tr>
+                        <td class="text-center text-secondary">Gün</td>
+                        <td class="text-center text-secondary">Ay</td>
+                        <td class="text-center text-secondary">Yıl</td>
+                    </tr>
+                    <tr>
+                        <td><input type="number" class="form-control border border-light rounded" id="dogum_tarihi_gun" name="dogum_tarihi_gun" min="1" max="31"></td>
+                        <td><input type="number" class="form-control border border-light rounded" id="dogum_tarihi_ay" name="dogum_tarihi_ay" min="1" max="12"></td>
+                        <td><input type="number" class="form-control border border-light rounded" id="dogum_tarihi_yil" name="dogum_tarihi_yil" min="1900" max="2023"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <input type="text" placeholder="E-Mail">
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <input type="text" class="form-control" id="telefon_numarasi" name="telefon_numarasi" placeholder="Telefon Numarası">
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <input type="password" placeholder="Şifre">
+        </div>
+        <button class="btn mt-3">Kayıt Ol</button>
+    </form>
+    <div class="text-center fs-6">
+        <a href="#">Giriş Yap</a>
+    </div>
+</div>

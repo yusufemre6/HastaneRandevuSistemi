@@ -1,4 +1,9 @@
-﻿<div class="wrapper">
+﻿@model HastaneRandevuSistemi.Models.Kullanici
+@{
+    ViewData["Title"] = "Kayıt Ol";
+    ViewData["Css"] = "~/css/KayitOl.css";
+}
+<div class="wrapper">
     <div class="logo">
         <img src="~/img/hospital-building.png" alt="">
     </div>
@@ -7,8 +12,10 @@
     </div>
     <form class="p-3 mt-3" method="post">
         <div class="form-field d-flex align-items-center">
-            <input type="text" placeholder="Adınız">
-            <input type="text" placeholder="Soyadınız">
+            <input type="text" asp-for="Adi" placeholder="Adınız">
+            <span asp-validation-for="Adi" class="text-danger"></span>
+            <input type="text" asp-for="Soyadi" placeholder="Soyadınız">
+            <span asp-validation-for="Soyadi" class="text-danger"></span>
         </div>
         <div class="form-field d-flex align-items-center">
             <label class="text-secondary" for="dogum_tarihi">Doğum Tarihi</label>
@@ -20,23 +27,35 @@
                         <td class="text-center text-secondary">Yıl</td>
                     </tr>
                     <tr>
-                        <td><input type="number" class="form-control border border-light rounded" id="dogum_tarihi_gun" name="dogum_tarihi_gun" min="1" max="31"></td>
-                        <td><input type="number" class="form-control border border-light rounded" id="dogum_tarihi_ay" name="dogum_tarihi_ay" min="1" max="12"></td>
-                        <td><input type="number" class="form-control border border-light rounded" id="dogum_tarihi_yil" name="dogum_tarihi_yil" min="1900" max="2023"></td>
+                        <td>
+                            <input type="number" asp-for="dtGun" class="form-control border border-light rounded" value="" min="1" max="31">
+                            <span asp-validation-for="dtGun" class="text-danger"></span>
+                        </td>
+                        <td>
+                            <input type="number" asp-for="dtAy" class="form-control border border-light rounded" value="" min="1" max="12">
+                            <span asp-validation-for="dtAy" class="text-danger"></span>
+                        </td>
+                        <td>
+                            <input type="number" asp-for="dtYil" class="form-control border border-light rounded" value="" min="1900" max="2023">
+                            <span asp-validation-for="dtYil" class="text-danger"></span>  
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <div class="form-field d-flex align-items-center">
-            <input type="text" placeholder="E-Mail">
+            <input asp-for="Email" type="text" placeholder="E-Mail">
+            <span asp-validation-for="Email" class="text-danger"></span>
         </div>
         <div class="form-field d-flex align-items-center">
-            <input type="text" class="form-control" id="telefon_numarasi" name="telefon_numarasi" placeholder="Telefon Numarası">
+            <input asp-for="TelNo" type="text" class="form-control" placeholder="Telefon Numarası">
+            <span asp-validation-for="TelNo" class="text-danger"></span>
         </div>
         <div class="form-field d-flex align-items-center">
-            <input type="password" placeholder="Şifre">
+            <input asp-for="Sifre" type="password" placeholder="Şifre">
+            <span asp-validation-for="Sifre" class="text-danger"></span>
         </div>
-        <button class="btn mt-3">Kayıt Ol</button>
+        <input type="submit" class="btn mt-3" value="Kayıt Ol">
     </form>
     <div class="text-center fs-6">
         <a href="#">Giriş Yap</a>

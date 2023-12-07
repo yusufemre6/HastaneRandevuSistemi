@@ -1,0 +1,21 @@
+﻿@model HastaneRandevuSistemi.Models.Kullanici
+@{
+    ViewData["Title"] = "Kayıt Başarılı";
+    ViewData["Css"] = "~/css/BasariliKayit.css";
+    string hitap;
+    if (Model.Cinsiyet == true)
+    {
+        hitap = "Bey";
+    }
+    else if (Model.Cinsiyet == false)
+    {
+        hitap = "Hanım";
+    }
+    else
+        hitap = "";
+}
+
+<div class="message-container">
+    <img src="success-icon.png" alt="Success Icon" class="icon">
+    <div class="success-message">@Model.Adi @hitap kaydınız başarılı bir şekilde oluşturulmuştur</div>
+</div>

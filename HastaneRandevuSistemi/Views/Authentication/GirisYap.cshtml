@@ -1,18 +1,25 @@
-﻿<div class="wrapper">
+﻿@model HastaneRandevuSistemi.Models.Kullanici
+@{
+    ViewData["Title"] = "Giriş Yap";
+    ViewData["Css"] = "~/css/GirisYap.css";
+}
+<div class="wrapper">
     <div class="logo">
         <img src="~/img/hospital-building.png" alt="">
     </div>
     <div class="text-center mt-4 name">
         Saü Hastane
     </div>
-    <form class="p-3 mt-3" method="post">
+    <form class="p-3 mt-3" method="post" asp-action="GirisYap" asp-controller="Authentication">
         <div class="form-field d-flex align-items-center">
-            <input type="text" placeholder="E-Mail">
+            <input asp-for="Email" type="text" placeholder="E-Mail">
+            <span asp-validation-for="Email" class="text-danger"></span>
         </div>
         <div class="form-field d-flex align-items-center">
-            <input type="password" placeholder="Şifre">
+            <input asp-for="Sifre" type="password" placeholder="Şifre">
+            <span asp-validation-for="Sifre" class="text-danger"></span>
         </div>
-        <button class="btn mt-3">Giriş Yap</button>
+        <input type="submit" class="btn mt-3" value="Giriş Yap">
     </form>
     <div class="text-center fs-6">
         <a href="#">Şifremi Unuttum?</a> or <a href="#">Kayıt Ol</a>

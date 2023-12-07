@@ -15,8 +15,6 @@ public class HomeController : Controller
 
     public IActionResult AnaSayfa()
     {
-        ViewData["Title"] = "Ana Sayfa";
-        ViewData["Css"] = "~/css/AnaSayfa.css";
         return View();
     }
 
@@ -28,13 +26,13 @@ public class HomeController : Controller
 
     public IActionResult Hakkimizda()
     {
-        ViewData["Title"] = "Hakkımızda";
+        
         return View();
     }
 
     public IActionResult Iletisim()
     {
-        ViewData["Title"] = "İletişim";
+        
         return View();
     }
 

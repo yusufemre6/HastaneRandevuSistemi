@@ -1,8 +1,10 @@
-#hastaneResmi {
-    max-width: 75%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+#anasayfa {
+    background-color: gray;
+    height: 600px;
+    background-image: url("img/Ishak_Pasha_Palace1454.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 #hosgeldinizMetni, #mottoMetni {

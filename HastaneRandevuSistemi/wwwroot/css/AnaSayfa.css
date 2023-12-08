@@ -1,22 +1,17 @@
-#anasayfa {
-    background-color: gray;
-    height: 600px;
-    background-image: url("img/Ishak_Pasha_Palace1454.jpg");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+.container {
+    position: relative;
 }
 
-#hosgeldinizMetni, #mottoMetni {
+#hastaneResmi {
+    width: 75%;
+    height: auto;
+}
+
+.overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
-    margin-top: 20px;
-}
-
-h2 {
-    color: #333;
-}
-
-p {
-    color: #555;
-    font-size: 18px;
+    color: #fff; /* Metin rengi */
 }

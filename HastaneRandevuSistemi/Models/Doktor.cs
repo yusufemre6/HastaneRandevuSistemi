@@ -1,13 +1,18 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace HastaneRandevuSistemi.Models;
 
 public class Doktor{
-    string Adi { get; set; }
-    string Soyadi { get; set; }
-    DateTime DogumTarihi { get; set; }
-    bool Cinsiyet { get; set; }
-    string TelNo { get; set; }
-    string Email { get; set; }
-    string Rol { get; set; }
-    string Derece { get; set; }
-    string Bolumu { get; set; }
+    public string Adi { get; set; }
+    public string Soyadi { get; set; }
+    public int dtGun { get; set; }
+    [Required(ErrorMessage = "Dogum Ayı Giriniz!")]
+    public int dtAy { get; set; }
+    [Required(ErrorMessage = "Dogum Yılı Giriniz!")]
+    public int dtYil { get; set; }
+    public string Cinsiyet { get; set; }
+    public string TelNo { get; set; }
+    public string Email { get; set; }
+    public string Derece { get; set; }
+    public string Brans { get; set; }
 }

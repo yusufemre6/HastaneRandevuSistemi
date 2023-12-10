@@ -2,18 +2,20 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HastaneRandevuSistemi.Models;
 
-public class Kullanici{
-    [Required(ErrorMessage="Adınızı Giriniz!")]
+public class Kullanici {
+    [Required(ErrorMessage = "Adınızı Giriniz!")]
     public string Adi { get; set; }
-    [Required(ErrorMessage="Soyadınızı Giriniz!")]
+    [Required(ErrorMessage = "Soyadınızı Giriniz!")]
     public string Soyadi { get; set; }
-    [Required(ErrorMessage="Dogum Günü Giriniz!")]
+    [Required(ErrorMessage = "Dogum Günü Giriniz!")]
     public int dtGun { get; set; }
-    [Required(ErrorMessage="Dogum Ayı Giriniz!")]
+    [Required(ErrorMessage = "Dogum Ayı Giriniz!")]
     public int dtAy { get; set; }
-    [Required(ErrorMessage="Dogum Yılı Giriniz!")]
+    [Required(ErrorMessage = "Dogum Yılı Giriniz!")]
     public int dtYil { get; set; }
-    public bool Cinsiyet { get; set; }
+    [Required(ErrorMessage = "Cinsiyet Giriniz!")]
+    [Display(Name ="Cinsiyet")]
+    public string Cinsiyet { get; set; }
     [Phone(ErrorMessage="Geçerli Telefon Numarası Giriniz!")]
     [Required(ErrorMessage = "Telefon Numarası Giriniz!")]
     public string TelNo { get; set; }

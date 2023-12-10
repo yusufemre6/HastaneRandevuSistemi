@@ -50,6 +50,10 @@
     /* border: 1px solid red; */
 }
 
+.form-field label {
+    color: #666;
+}
+
 .wrapper .form-field {
     padding-left: 10px;
     margin-bottom: 20px;

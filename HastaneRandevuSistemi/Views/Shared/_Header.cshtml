@@ -1,0 +1,22 @@
+﻿<div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <div class="col-md-3 mb-2 mb-md-0">
+            <a class="d-inline-flex link-body-emphasis text-decoration-none" asp-controller="Home" asp-action="AnaSayfa">
+                <img src="~/img/hospital-building.png" alt="Saü Hastane" width="50px" />
+            </a>
+        </div>
+
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <li><a class="nav-link text-info px-2" asp-controller="Home" asp-action="AnaSayfa">Ana Sayfa</a></li>
+            <li><a class="nav-link text-info px-2" asp-controller="Home" asp-action="Kadro">Doktor Kadrosu</a></li>
+            <li><a class="nav-link text-info px-2" asp-controller="Home" asp-action="Hakkimizda">Hakkımızda</a></li>
+            <li><a class="nav-link text-info px-2" asp-controller="Home" asp-action="Iletisim">İletişim</a></li>
+
+        </ul>
+
+        <div class="col-md-3 text-end">
+            <a class="btn btn-outline-danger me-2 text-danger" asp-controller="Authentication" asp-action="GirisYap">Giriş Yap</a>
+            <a class="btn btn-outline-info text-info" asp-controller="Authentication" asp-action="KayitOl">Kayıt Ol</a>
+        </div>
+    </header>
+</div>

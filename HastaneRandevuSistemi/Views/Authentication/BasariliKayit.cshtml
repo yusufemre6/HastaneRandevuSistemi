@@ -3,11 +3,11 @@
     ViewData["Title"] = "Kayıt Başarılı";
     ViewData["Css"] = "~/css/BasariliKayit.css";
     string hitap;
-    if (Model.Cinsiyet == true)
+    if (Model.Cinsiyet == "Erkek")
     {
         hitap = "Bey";
     }
-    else if (Model.Cinsiyet == false)
+    else if (Model.Cinsiyet == "Kadın")
     {
         hitap = "Hanım";
     }

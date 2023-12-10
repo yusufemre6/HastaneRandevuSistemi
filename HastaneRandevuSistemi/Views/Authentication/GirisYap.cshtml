@@ -12,12 +12,12 @@
     </div>
     <form class="p-3 mt-3" method="post" asp-action="GirisYap" asp-controller="Authentication">
         <div class="form-field d-flex align-items-center">
-            <input asp-for="Email" type="text" placeholder="E-Mail">
-            <span asp-validation-for="Email" class="text-danger"></span>
+            <input asp-for="KullaniciEmail" type="text" placeholder="E-Mail">
+            <span asp-validation-for="KullaniciEmail" class="text-danger"></span>
         </div>
         <div class="form-field d-flex align-items-center">
-            <input asp-for="Sifre" type="password" placeholder="Şifre">
-            <span asp-validation-for="Sifre" class="text-danger"></span>
+            <input asp-for="KullaniciSifre" type="password" placeholder="Şifre">
+            <span asp-validation-for="KullaniciSifre" class="text-danger"></span>
         </div>
         <input type="submit" class="btn mt-3" value="Giriş Yap">
     </form>

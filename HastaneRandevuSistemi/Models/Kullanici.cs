@@ -1,29 +1,32 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HastaneRandevuSistemi.Models;
 
 public class Kullanici {
+
+    [Key]
+    public int KullaniciID { get; set; }
     [Required(ErrorMessage = "Adınızı Giriniz!")]
-    public string Adi { get; set; }
+    public string KullaniciAdi { get; set; }
     [Required(ErrorMessage = "Soyadınızı Giriniz!")]
-    public string Soyadi { get; set; }
+    public string KullaniciSoyadi { get; set; }
     [Required(ErrorMessage = "Dogum Günü Giriniz!")]
-    public int dtGun { get; set; }
+    public int KullanicidtGun { get; set; }
     [Required(ErrorMessage = "Dogum Ayı Giriniz!")]
-    public int dtAy { get; set; }
+    public int KullanicidtAy { get; set; }
     [Required(ErrorMessage = "Dogum Yılı Giriniz!")]
-    public int dtYil { get; set; }
+    public int KullanicidtYil { get; set; }
     [Required(ErrorMessage = "Cinsiyet Giriniz!")]
     [Display(Name ="Cinsiyet")]
-    public string Cinsiyet { get; set; }
+    public int CinsiyetID { get; set; }
+    public Cinsiyet Cinsiyet { get; set; }
     [Phone(ErrorMessage="Geçerli Telefon Numarası Giriniz!")]
     [Required(ErrorMessage = "Telefon Numarası Giriniz!")]
-    public string TelNo { get; set; }
+    public string KullaniciTelNo { get; set; }
     [Required(ErrorMessage="Mail Adresi Giriniz!")]
-    public string Email { get; set; }
-    public string Rol { get; set; }
+    public string KullaniciEmail { get; set; }
+    public string RolID { get; set; }
     [Required(ErrorMessage="Şifrenizi Giriniz!")]
-    public string Sifre { get; set; }
-    [Compare("Sifre" ,ErrorMessage="Şifreler Eşleşmemektedir!")]
-    public string SifreDogrulama { get; set; }
+    public string KullaniciSifre { get; set; }
 }

@@ -3,16 +3,18 @@ using System.ComponentModel.DataAnnotations;
 namespace HastaneRandevuSistemi.Models;
 
 public class Doktor{
-    public string Adi { get; set; }
-    public string Soyadi { get; set; }
-    public int dtGun { get; set; }
+    public int DoktorID { get; set; }
+    public string DoktorAdi { get; set; }
+    public string DoktorSoyadi { get; set; }
+    public int DoktordtGun { get; set; }
     [Required(ErrorMessage = "Dogum Ayı Giriniz!")]
-    public int dtAy { get; set; }
+    public int DoktordtAy { get; set; }
     [Required(ErrorMessage = "Dogum Yılı Giriniz!")]
-    public int dtYil { get; set; }
-    public string Cinsiyet { get; set; }
-    public string TelNo { get; set; }
-    public string Email { get; set; }
-    public string Derece { get; set; }
-    public string Brans { get; set; }
+    public int DoktordtYil { get; set; }
+    public int CinsiyetID { get; set; }
+    public string DoktorTelNo { get; set; }
+    public string DoktorEmail { get; set; }
+    public int DereceID { get; set; }
+    public int BransID { get; set; }
+    public ICollection<Randevu> Randevular { get; set; }
 }

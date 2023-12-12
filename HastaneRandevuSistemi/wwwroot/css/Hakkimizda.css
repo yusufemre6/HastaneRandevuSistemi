@@ -1,42 +1,26 @@
-body {
-    font-family: sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-}
-
-section {
-    margin: 0 auto;
-    padding: 20px 0;
-    width: 80%;
-}
-
-h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-p {
-    margin-bottom: 10px;
+.section {
+    margin-bottom: 40px;
 }
 
 .hakkimizda {
-    background-color: #f5f5f5;
+    background-color: #ecf0f1;
+    padding: 20px;
+    border-radius: 10px;
 }
 
-.vizyon {
-    background-color: #d9d9d9;
-}
-
+.vizyon,
 .misyon {
-    background-color: #c3c3c3;
+    background-color: #d2d7d3;
+    padding: 20px;
+    border-radius: 10px;
 }
 
-@media screen and (max-width: 768px) {
-    body {
-        font-size: 14px;
-    }
+/* Optional: Add hover effect on sections */
+.section:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-    section {
-        width: 100%;
-    }
+/* Optional: Add transition effect on hover */
+.section {
+    transition: box-shadow 0.3s ease;
 }

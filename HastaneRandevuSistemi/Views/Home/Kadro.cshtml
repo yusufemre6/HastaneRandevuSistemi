@@ -1,4 +1,17 @@
-﻿@{
+﻿@model Doktor
+@{
     ViewData["Title"] = "Doktor Kadrosu";
     ViewData["Css"] = "~/css/DoktorKadro.css";
 }
+
+@foreach (var doktor in ViewBag.Doktorlar)
+ {
+    <div class="card" style="width: 18rem;">
+        <img src="~/img/mandoctor.png" class="card-img-top" alt="...">
+        <div class="card-body">
+            <ul>
+                <li>Doktor Adı Soyadı: @doktor.DoktorAdi</li>
+            </ul>
+        </div>
+    </div>
+ }

@@ -1,0 +1,42 @@
+body {
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+section {
+    margin: 0 auto;
+    padding: 20px 0;
+    width: 80%;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+.hakkimizda {
+    background-color: #f5f5f5;
+}
+
+.vizyon {
+    background-color: #d9d9d9;
+}
+
+.misyon {
+    background-color: #c3c3c3;
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    section {
+        width: 100%;
+    }
+}

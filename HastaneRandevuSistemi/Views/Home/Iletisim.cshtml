@@ -1,3 +1,56 @@
 ﻿@{ ViewData["Title"] = "İletişim";
     ViewData["Css"] = "~/css/Iletisim.css";
 }
+
+<body>
+
+    <header>
+        <h1 class ="text-center ">Hastane İletişim</h1>
+    </header>
+
+    <main>
+
+        <section class="iletisim-bilgileri">
+            <h2 class="text-center">İletişim Bilgileri</h2>
+            <p>
+                <address>
+                    Sakarya Şehir Hastanesi
+                    Adapazarı, Sakarya
+                    Türkiye
+                </address>
+            </p>
+            <p>
+                <strong>Telefon:</strong> +90 264 123 45 67
+                <br>
+                <strong>Faks:</strong> +90 264 789 01 23
+                <br>
+                <strong>E-posta:</strong> info@sakaryasehirhastanesi.gov.tr
+            </p>
+        </section>
+
+        <section class="iletisim-formu">
+            <h2 class="text-center">İletişim Formu</h2>
+            <form action="mailto:info@sakaryasehirhastanesi.gov.tr" method="post">
+                <div class="mb-3 my-2">
+                    <label for="isim">Adınız Soyadınız</label>
+                    <input type="text" class="form-control" id="isim" name="isim" placeholder="Adınız Soyadınız">
+                </div>
+                <div class="mb-3 my-2">
+                    <label for="eposta">E-posta Adresiniz</label>
+                    <input type="email" class="form-control" id="eposta" name="eposta" placeholder="E-posta Adresiniz">
+                </div>
+                <div class="mb-3 my-2">
+                    <label for="konu">Konu</label>
+                    <input type="text" class="form-control" id="konu" name="konu" placeholder="Konu">
+                </div>
+                <div class="mb-3 my-2">
+                    <label for="mesaj">Mesajınız</label>
+                    <textarea class="form-control" id="mesaj" name="mesaj" placeholder="Mesajınız"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary text-center mx-6" data-mdb-ripple-init>Gönder</button>
+            </form>
+        </section>
+
+    
+
+</body>

@@ -12,10 +12,12 @@
   <ItemGroup>
     <Folder Include="wwwroot\img\" />
     <Folder Include="Views\Authentication\" />
+    <Folder Include="Views\Dashboard\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Views\Home\" />
     <None Remove="Views\Authentication\" />
+    <None Remove="Views\Dashboard\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />

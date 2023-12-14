@@ -43,6 +43,11 @@ namespace HastaneRandevuSistemi.Controllers
                 return View("KayitOl");
             }
         }
+
+        public IActionResult CikisYap()
+        {
+            return View();
+        }
     }
 }
 

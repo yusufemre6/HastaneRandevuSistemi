@@ -4,14 +4,74 @@
     ViewData["Css"] = "~/css/DoktorKadro.css";
 }
 
-@foreach (var doktor in ViewBag.Doktorlar)
- {
-    <div class="card" style="width: 18rem;">
-        <img src="~/img/mandoctor.png" class="card-img-top" alt="...">
-        <div class="card-body">
-            <ul>
-                <li>Doktor Adı Soyadı: @doktor.DoktorAdi</li>
-            </ul>
-        </div>
+<div class="container my-4">
+    <div class="d-flex flex-wrap">
+        @foreach (var doktor in ViewBag.Doktorlar)
+            {
+            <div class="card m-2 bordered-3" style="width: 18rem;">
+                @{
+                    if (doktor.CinsiyetID == 1)
+                    {
+                        <img src="~/img/mandoctor.png" class="card-img-top" alt="Erkek Doktor Foto">
+                    }
+                    else
+                    {
+                        <img src="~/img/womandoc.png" class="card-img-top" alt="Kadın Doktor Foto">
+                    }
+                }
+
+                <div class="card-body">
+                    <ul>
+                        <li>Doktor Adı Soyadı: @doktor.DoktorAdi @doktor.DoktorSoyadi</li>
+                        @{
+                            if (doktor.CinsiyetID == 1)
+                            {
+                                <li>Doktor Cinsiyeti: Erkek</li>
+                            }
+                            else
+                            {
+                                <li>Doktor Cinsiyeti: Kadın</li>
+                            }
+                        }
+                        @{
+                            switch (doktor.DereceID)
+                            {
+                                case 1:
+                                    <li>Doktor Derecesi: Profesör</li>
+                                    break;
+                                case 2:
+                                    <li>Doktor Derecesi: Uzman</li>
+                                    break;
+                                default:
+                                    <li>Doktor Derecesi: Kaçak</li>
+                                    break;
+                            }
+                        }
+                        @{
+                            switch (doktor.BransID)
+                            {
+                                case 1:
+                                    <li>Doktor Branşı: Kardiyoloji</li>
+                                    break;
+                                case 2:
+                                    <li>Doktor Branşı: Üroloji</li>
+                                    break;
+                                case 3:
+                                    <li>Doktor Branşı: Radyoloji</li>
+                                    break;
+                                case 4:
+                                    <li>Doktor Branşı: Jinekoloji</li>
+                                    break;
+
+                                default:
+                                    <li>Doktor Branşı: Her şeyci</li>
+                                    break;
+                            }
+                        }
+                        <li>Doktor Mail Adresi: @doktor.DoktorEmail</li>
+                    </ul>
+                </div>
+            </div>
+         }
     </div>
- }
+</div>

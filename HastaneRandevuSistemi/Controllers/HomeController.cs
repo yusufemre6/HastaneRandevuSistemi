@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using HastaneRandevuSistemi.Models;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Localization;
+using HastaneRandevuSistemi.Services;
 
 
 namespace HastaneRandevuSistemi.Controllers;
@@ -9,20 +11,42 @@ namespace HastaneRandevuSistemi.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-    Uri baseAddress = new Uri("https://localhost:7178/Api");
+    private  LanguageService _localization;
+
+	
+
+	Uri baseAddress = new Uri("https://localhost:7178/Api");
     HttpClient _client;
 
-    public HomeController(ILogger<HomeController> logger)
-    {
-        _logger = logger;
-    }
 
-    public IActionResult AnaSayfa()
+
+	public HomeController(ILogger<HomeController> logger, LanguageService localization = null)
+	{
+		_logger = logger;
+		_localization = localization;
+	}
+
+	public IActionResult AnaSayfa()
     {
+		ViewBag.Welcome = _localization.Getkey("Welcome").Value;
+        var currentCulture =Thread.CurrentThread.CurrentCulture.Name;
         return View();
     }
 
-    public IActionResult Kadro()
+	public IActionResult ChangeLanguage(string culture)
+	{
+		Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue
+            (new RequestCulture(culture)), new CookieOptions()
+		{
+			Expires = DateTimeOffset.UtcNow.AddYears(2)
+
+		});
+
+		return Redirect(Request.Headers["Referer"].ToString());
+
+	}
+
+	public IActionResult Kadro()
     {
         _client = new HttpClient();
         _client.BaseAddress = baseAddress;

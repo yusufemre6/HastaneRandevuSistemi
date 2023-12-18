@@ -6,6 +6,7 @@ namespace HastaneRandevuSistemi.Models
 	{
 		public DbSet<Kullanici> Kullanicilar { get; set; }
         public DbSet<Brans> Branslar{ get; set; }
+        public DbSet<Cinsiyet> Cinsiyetler { get; set; }
         public DbSet<Derece> Dereceler { get; set; }
         public DbSet<Doktor> Doktorlar { get; set; }
         public DbSet<Durum> Durumlar { get; set; }

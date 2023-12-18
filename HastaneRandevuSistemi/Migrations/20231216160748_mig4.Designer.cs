@@ -2,6 +2,7 @@
 using HastaneRandevuSistemi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HastaneRandevuSistemi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231216160748_mig4")]
+    partial class mig4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,7 +55,7 @@ namespace HastaneRandevuSistemi.Migrations
 
                     b.HasKey("CinsiyetID");
 
-                    b.ToTable("Cinsiyetler");
+                    b.ToTable("Cinsiyet");
                 });
 
             modelBuilder.Entity("HastaneRandevuSistemi.Models.Derece", b =>
@@ -251,7 +254,7 @@ namespace HastaneRandevuSistemi.Migrations
 
                     b.HasIndex("KisiTipiID");
 
-                    b.ToTable("Kullanicilar");
+                    b.ToTable("Kullanici");
                 });
 
             modelBuilder.Entity("HastaneRandevuSistemi.Models.MuayeneTur", b =>
@@ -282,18 +285,12 @@ namespace HastaneRandevuSistemi.Migrations
                     b.Property<int>("BransID")
                         .HasColumnType("integer");
 
-                    b.Property<int>("DoktorID")
+                    b.Property<int>("PoliklinikAdi")
                         .HasColumnType("integer");
-
-                    b.Property<string>("PoliklinikAdi")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.HasKey("PoliklinikID");
 
                     b.HasIndex("BransID");
-
-                    b.HasIndex("DoktorID");
 
                     b.ToTable("Poliklinikler");
                 });
@@ -415,12 +412,6 @@ namespace HastaneRandevuSistemi.Migrations
                         .HasForeignKey("BransID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("HastaneRandevuSistemi.Models.Doktor", null)
-                        .WithMany("Poliklinikler")
-                        .HasForeignKey("DoktorID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("HastaneRandevuSistemi.Models.Randevu", b =>
@@ -491,8 +482,6 @@ namespace HastaneRandevuSistemi.Migrations
 
             modelBuilder.Entity("HastaneRandevuSistemi.Models.Doktor", b =>
                 {
-                    b.Navigation("Poliklinikler");
-
                     b.Navigation("Randevular");
                 });
 

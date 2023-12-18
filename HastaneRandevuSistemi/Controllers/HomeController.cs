@@ -8,6 +8,16 @@ using HastaneRandevuSistemi.Services;
 
 namespace HastaneRandevuSistemi.Controllers;
 
+class DoktorTemsili
+{
+    public string doktorAdi { get; set; }
+    public string doktorSoyadi { get; set; }
+    public string cinsiyetAdi { get; set; }
+    public string doktorEmail { get; set; }
+    public string bransAdi { get; set; }
+    public string dereceAdi { get; set; }
+}
+
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
@@ -51,19 +61,14 @@ public class HomeController : Controller
         _client = new HttpClient();
         _client.BaseAddress = baseAddress;
 
-        List<Doktor> doktorlar = new List<Doktor>();
+        List<DoktorTemsili> doktorlar = new List<DoktorTemsili>();
         HttpResponseMessage httpResponseMessage = _client.GetAsync(_client.BaseAddress+"/HomeApi").Result;
         if (httpResponseMessage.IsSuccessStatusCode)
         {
             string data = httpResponseMessage.Content.ReadAsStringAsync().Result;
-            doktorlar = JsonConvert.DeserializeObject<List<Doktor>>(data);
+            
+            doktorlar = JsonConvert.DeserializeObject<List<DoktorTemsili>>(data);
         }
-
-        foreach (var item in doktorlar)
-        {
-            Console.WriteLine(item.DoktorAdi);
-        }
-
 
         ViewBag.Doktorlar = doktorlar;
         return View();

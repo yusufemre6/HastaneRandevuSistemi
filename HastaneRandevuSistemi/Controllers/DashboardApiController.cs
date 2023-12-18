@@ -2,33 +2,49 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HastaneRandevuSistemi.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace HastaneRandevuSistemi.Controllers
 {
     [Route("api/[controller]")]
+    [ApiController]
     public class DashboardApiController : Controller
     {
-        // GET: api/values
+        ApplicationDbContext dashContext = new ApplicationDbContext();
+
+        
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IQueryable Get(int kullaniciID)
         {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
+            Console.WriteLine(kullaniciID);
+            var query = from randevu in dashContext.Randevular.Where(r => r.KullaniciID == kullaniciID)
+                        join brans in dashContext.Branslar on randevu.BransID equals brans.BransID
+                        join poliklinik in dashContext.Poliklinikler on randevu.PoliklinikID equals poliklinik.PoliklinikID
+                        join hastane in dashContext.Hastaneler on randevu.HastaneID equals hastane.HastaneID
+                        join doktor in dashContext.Doktorlar on randevu.DoktorID equals doktor.DoktorID
+                        join durum in dashContext.Durumlar on randevu.DurumID equals durum.DurumID
+                        join muayenetur in dashContext.MuayeneTurleri on randevu.MuayeneTurID equals muayenetur.MuayeneTurID
+                        
+                        select new
+                        {
+                            randevu.RandevuGun,
+                            randevu.RandevuAy,
+                            randevu.RandevuYil,
+                            randevu.Saat,
+                            randevu.Dakika,
+                            brans.BransAdi,
+                            poliklinik.PoliklinikAdi,
+                            hastane.HastaneAdi,
+                            doktor.DoktorAdi,
+                            doktor.DoktorSoyadi,
+                            durum.DurumAdi,
+                            muayenetur.MuayeneTurAdi
+                        };
+            return query;
         }
 
         // PUT api/values/5

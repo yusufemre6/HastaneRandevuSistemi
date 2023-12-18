@@ -4,8 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using HastaneRandevuSistemi.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace HastaneRandevuSistemi.Controllers
 {
@@ -16,12 +17,25 @@ namespace HastaneRandevuSistemi.Controllers
         ApplicationDbContext homeContext = new ApplicationDbContext();
 
         [HttpGet]
-        public List<Doktor>  Get()
+        public IQueryable Get()
         {
-            return homeContext.Doktorlar.ToList();
+            var query = from doktor in homeContext.Doktorlar
+                        join cinsiyet in homeContext.Cinsiyetler on doktor.CinsiyetID equals cinsiyet.CinsiyetID
+                        join derece in homeContext.Dereceler on doktor.DereceID equals derece.DereceID
+                        join brans in homeContext.Branslar on doktor.BransID equals brans.BransID
+                        select new
+                        {
+                            doktor.DoktorAdi,
+                            doktor.DoktorSoyadi,
+                            cinsiyet.CinsiyetAdi,
+                            doktor.DoktorEmail,
+                            brans.BransAdi,
+                            derece.DereceAdi
+                        };
+            return query;
         }
 
-        // POST api/values
+        
         [HttpPost]
         public void Post([FromBody]string value)
         {

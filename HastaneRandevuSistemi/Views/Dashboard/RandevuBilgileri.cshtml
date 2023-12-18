@@ -1,4 +1,62 @@
-﻿@{ Layout = "_LayoutDashboard";
+﻿@{
+    Layout = "_LayoutDashboard";
     ViewData["Css"] = "";
     ViewData["Title"] = "Randevu Bilgileri";
 }
+
+<div class="h-75 rounded rounded-4 custom-scroll-container overflow-auto">
+    @foreach (var randevu in ViewBag.Randevular)
+     {
+        <div class="card mt-3">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <span class="text-white bg-info rounded rounded-5 px-2 py-1">@randevu.RandevuGun/@randevu.RandevuAy/@randevu.RandevuYil @randevu.Saat:@randevu.Dakika </span>
+                    </div>
+                    <div class="col-md-8 border border-light-subtle">
+                        <p class="fw-light">
+                            @randevu.HastaneAdi
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        @{
+                            switch (@randevu.DurumAdi)
+                            {
+                                case "Aktif":
+                                    <span class="text-white bg-success rounded rounded-5 px-2 py-1 fw-light"> Aktif Randevu</span>
+                                    break;
+                                case "İptal":
+                                    <span class="text-white bg-danger rounded rounded-5 px-2 py-1 fw-light">İptal Randevu</span>
+                                    break;
+                                case "Geçmiş":
+                                    <span class="text-dark bg-secondary rounded rounded-5 px-2 py-1 fw-light">Geçmiş Randevu</span>
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                    </div>
+                    <div class="col-md-8 border border-light-subtle">
+                        <p class="fw-light">
+                            @randevu.PoliklinikAdi @randevu.BransAdi
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <p class="fw-light text-primary ">
+                            @randevu.MuayeneTurAdi
+                        </p>
+                    </div>
+                    <div class="col-md-8 border border-light-subtle">
+                        <p class="fw-light">
+                            @randevu.DoktorAdi @randevu.DoktorSoyadi
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>   
+     }
+</div>

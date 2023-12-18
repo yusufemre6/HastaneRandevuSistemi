@@ -16,5 +16,7 @@ public class Doktor{
     public string DoktorEmail { get; set; }
     public int DereceID { get; set; }
     public int BransID { get; set; }
+    public ICollection<Poliklinik> Poliklinikler { get; set; }
     public ICollection<Randevu> Randevular { get; set; }
+    
 }

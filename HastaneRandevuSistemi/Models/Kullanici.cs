@@ -26,8 +26,8 @@ public class Kullanici {
     public string KullaniciTelNo { get; set; }
     [Required(ErrorMessage="Mail Adresi Giriniz!")]
     public string KullaniciEmail { get; set; }
-    public int KisiTipiID { get; set; }
     [Required(ErrorMessage="Şifrenizi Giriniz!")]
     public string KullaniciSifre { get; set; }
     public ICollection<Randevu> Randevular { get; set; }
+    public ICollection<Rol> Roller { get; set; }
 }

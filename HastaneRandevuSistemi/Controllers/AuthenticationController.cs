@@ -24,6 +24,7 @@ namespace HastaneRandevuSistemi.Controllers
                 return RedirectToAction("Dashboard", kullanici);
             }
             else {
+                ViewBag.HataMsg = "Giriş Yapılamadı !!!";
                 return View("GirisYap");
             }
         }

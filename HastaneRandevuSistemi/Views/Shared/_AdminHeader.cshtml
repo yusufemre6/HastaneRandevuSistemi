@@ -1,22 +1,28 @@
 ﻿<div class="container px-3 py-2 border-bottom">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a asp-controller="Dashboard" asp-action="RandevuBilgileri" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-decoration-none">
+            <a asp-controller="Admin" asp-action="AdminBaslangic" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-decoration-none">
                 <img class="me-3" src="~/img/user.png" alt="Saü Hastane" width="50px" />
                 Yusuf Emre Yıldız
             </a>
 
             <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                 <li>
-                    <a asp-controller="Dashboard" asp-action="HesapBilgileri" class="nav-link">
+                    <a asp-controller="Admin" asp-action="DoktorListele" class="nav-link">
                         <img src="~/img/profile.png" class="bi d-block mx-auto mb-1" width="24" height="24" />
-                        Hesap Bilgileri
+                        Doktor Bilgileri
                     </a>
                 </li>
                 <li>
-                    <a asp-controller="Dashboard" asp-action="RandevuBilgileri" class="nav-link">
+                    <a asp-controller="Admin" asp-action="HastaneListele" class="nav-link">
                         <img src="~/img/medical-records.png" class="bi d-block mx-auto mb-1" width="24" height="24" />
-                        Randevu Bilgileri
+                        Hastane Bilgileri
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Admin" asp-action="PoliklinikListele" class="nav-link">
+                        <img src="~/img/medical-records.png" class="bi d-block mx-auto mb-1" width="24" height="24" />
+                        Poliklinik Bilgileri
                     </a>
                 </li>
                 <li>

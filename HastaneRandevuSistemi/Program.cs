@@ -35,6 +35,8 @@ builder.Services.Configure<RequestLocalizationOptions>(options => {
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSession();
+
 
 var app = builder.Build();
 
@@ -53,6 +55,7 @@ app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocal
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",

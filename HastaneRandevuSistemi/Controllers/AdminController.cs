@@ -10,6 +10,21 @@ namespace HastaneRandevuSistemi.Controllers
 			return View();
 		}
 
+        public IActionResult DoktorListele()
+        {
+            return View();
+        }
+
+        public IActionResult HastaneListele()
+        {
+            return View();
+        }
+
+        public IActionResult PoliklinikListele()
+        {
+            return View();
+        }
+
         [HttpGet]
         public IActionResult GetDoktorEkle()
         {

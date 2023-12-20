@@ -3,7 +3,7 @@
 @{ await Html.RenderPartialAsync("_Head");}
 <body class="my-0">
     @{
-        switch ("Admin")
+        switch (ViewBag.KullaniciRole)
         {
             case "Admin":
                 await Html.RenderPartialAsync("_AdminHeader");

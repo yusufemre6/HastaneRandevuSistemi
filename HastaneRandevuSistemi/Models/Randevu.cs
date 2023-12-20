@@ -12,11 +12,7 @@ namespace HastaneRandevuSistemi.Models
         public int DoktorID { get; set; }
         public int DurumID{ get; set; }
         public int MuayeneTurID { get; set; }
-        public int RandevuGun{ get; set; }
-        public int RandevuAy { get; set; }
-        public int RandevuYil { get; set; }
-        public int Saat { get; set; }
-        public int Dakika { get; set; }
+        public DateTime RandevuTarihSaat { get; set; }
     }
 }
 

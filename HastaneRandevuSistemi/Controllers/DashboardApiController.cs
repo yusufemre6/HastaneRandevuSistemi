@@ -31,11 +31,7 @@ namespace HastaneRandevuSistemi.Controllers
                         
                         select new
                         {
-                            randevu.RandevuGun,
-                            randevu.RandevuAy,
-                            randevu.RandevuYil,
-                            randevu.Saat,
-                            randevu.Dakika,
+                            
                             brans.BransAdi,
                             poliklinik.PoliklinikAdi,
                             hastane.HastaneAdi,

@@ -27,6 +27,8 @@ namespace HastaneRandevuSistemi.Controllers
 
     public class DashboardController : Controller
     {
+        ApplicationDbContext dashContext = new ApplicationDbContext();
+
         Uri baseAddress = new Uri("https://localhost:7178/Api");
         HttpClient _client;
 
@@ -36,13 +38,19 @@ namespace HastaneRandevuSistemi.Controllers
         }
 
         [HttpGet]
-        public IActionResult RandevuBilgileri(int id)
+        public IActionResult RandevuBilgileri()
         {
+            Console.WriteLine("Buradayız");
+
+            string kEmail = HttpContext.Session.GetString("userEmail");
+            Console.WriteLine(kEmail);
+            var kullanici = dashContext.Kullanicilar.SingleOrDefault(k => k.KullaniciEmail == kEmail);
+            
             _client = new HttpClient();
             _client.BaseAddress = baseAddress;
 
             List<RandevuTemsili> randevularlar = new List<RandevuTemsili>();
-            HttpResponseMessage httpResponseMessage = _client.GetAsync(_client.BaseAddress + "/DashboardApi?&kullaniciID=" + id).Result;
+            HttpResponseMessage httpResponseMessage = _client.GetAsync(_client.BaseAddress + "/DashboardApi?&kullaniciID=" + 1).Result;
             if (httpResponseMessage.IsSuccessStatusCode)
             {
                 string data = httpResponseMessage.Content.ReadAsStringAsync().Result;

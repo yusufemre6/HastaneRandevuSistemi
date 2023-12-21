@@ -1,43 +1,46 @@
-﻿<!DOCTYPE html>
+﻿@{ string role = ViewData["Role"].ToString();}
+<!DOCTYPE html>
 <html lang="en">
 @{ await Html.RenderPartialAsync("_Head");}
 <body class="my-0">
     @{
-        switch ("Hasta")
+        Console.WriteLine(role);
+        if (role == "1")
         {
-            case "Admin":
-                await Html.RenderPartialAsync("_AdminHeader");
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4">
-                            @{
-                                await Html.RenderPartialAsync("_AdminSidebar");
-                            }
-                        </div>
-                        <div class="col-md-8" style="height:600px">
-                            @RenderBody()
-                        </div>
+            await Html.RenderPartialAsync("_AdminHeader");
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        @{
+                            await Html.RenderPartialAsync("_AdminSidebar");
+                        }
+                    </div>
+                    <div class="col-md-8" style="height:600px">
+                        @RenderBody()
                     </div>
                 </div>
-                break;
-            case "Hasta":
-                await Html.RenderPartialAsync("_HastaHeader");
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4">
-                            @{
-                                await Html.RenderPartialAsync("_HastaSidebar");
-                            }
-                        </div>
-                        <div class="col-md-8" style="height:600px">
-                            @RenderBody()
-                        </div>
-                    </div>
-                </div>
-                break;
+            </div>
         }
+        else
+        {
+            await Html.RenderPartialAsync("_HastaHeader");
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        @{
+                            await Html.RenderPartialAsync("_HastaSidebar");
+                        }
+                    </div>
+                    <div class="col-md-8" style="height:600px">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        }
+
+
     }
- 
+
     @{ await Html.RenderPartialAsync("_Footer");}
     @{ await Html.RenderPartialAsync("_Scripts");}
     @await RenderSectionAsync("Scripts", required: false)

@@ -1,33 +1,39 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HastaneRandevuSistemi.Controllers
 {
-	public class AdminController : Controller
+    [Authorize(Roles = "1")]
+    public class AdminController : Controller
 	{
 		public IActionResult AdminBaslangic()
 		{
-
-			return View();
+            ViewData["Role"] = "1";
+            return View();
 		}
 
         public IActionResult DoktorListele()
         {
+            ViewData["Role"] = "1";
             return View();
         }
 
         public IActionResult HastaneListele()
         {
+            ViewData["Role"] = "1";
             return View();
         }
 
         public IActionResult PoliklinikListele()
         {
+            ViewData["Role"] = "1";
             return View();
         }
 
         [HttpGet]
         public IActionResult GetDoktorEkle()
         {
+            ViewData["Role"] = "1";
             return View();
         }
 
@@ -39,12 +45,14 @@ namespace HastaneRandevuSistemi.Controllers
 
         public IActionResult DoktorSil()
         {
+            ViewData["Role"] = "1";
             return View();
         }
 
         [HttpGet]
         public IActionResult GetHastaneEkle()
         {
+            ViewData["Role"] = "1";
             return View();
         }
 
@@ -57,23 +65,27 @@ namespace HastaneRandevuSistemi.Controllers
        
         public IActionResult HastaneSil()
         {
+            ViewData["Role"] = "1";
             return View();
         }
 
         [HttpGet]
         public IActionResult GetPoliklinikEkle()
         {
+            ViewData["Role"] = "1";
             return View();
         }
 
         [HttpPost]
         public IActionResult PostPoliklinikEkle()
         {
+
             return View();
         }
 
         public IActionResult PoliklinikSil()
         {
+            ViewData["Role"] = "1";
             return View();
         }
 

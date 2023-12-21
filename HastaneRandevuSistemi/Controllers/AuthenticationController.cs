@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Reflection;
 using Microsoft.AspNetCore.Http;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using System.Security.Cryptography;
 
 
 namespace HastaneRandevuSistemi.Controllers
@@ -21,6 +22,27 @@ namespace HastaneRandevuSistemi.Controllers
         [HttpGet]
         public IActionResult GirisYap()
         {
+            ClaimsPrincipal claimsPrincipal = HttpContext.User;
+
+            if (claimsPrincipal.Identity.IsAuthenticated)
+            {
+                string rolId = HttpContext.User.FindFirst(ClaimTypes.Role)?.Value;
+                
+                switch (rolId)
+                {
+                    case "1":
+                        
+                        return RedirectToAction("AdminBaslangic", "Admin");
+
+                    case "2":
+                        
+                        return RedirectToAction("RandevuBilgileri", "Dashboard");
+
+                    default:
+                        return RedirectToAction("RandevuBilgileri", "Dashboard");
+                }
+            }
+
             ViewBag.HataMsg="";
             return View();
         }
@@ -35,7 +57,7 @@ namespace HastaneRandevuSistemi.Controllers
                 int rolId= authContext.Roller.SingleOrDefault(u => u.KullaniciID == userCheck.KullaniciID).KisiTipiID;
                 var claims = new List<Claim>() {
                     new Claim(ClaimTypes.Email,kullanici.KullaniciEmail),
-                    new Claim(ClaimTypes.Role,"2")
+                    new Claim(ClaimTypes.Role,rolId.ToString())
                 };
 
                 var claimsIdentity = new ClaimsIdentity(claims,CookieAuthenticationDefaults.AuthenticationScheme);
@@ -43,8 +65,20 @@ namespace HastaneRandevuSistemi.Controllers
 
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,new ClaimsPrincipal(claimsIdentity),authProperties);
-                
-                return RedirectToAction("RandevuBilgileri", "Dashboard");
+                switch (rolId)
+                {
+                    case 1:
+                        
+                        return RedirectToAction("AdminBaslangic", "Admin");
+
+                    case 2:
+                        
+                        return RedirectToAction("RandevuBilgileri", "Dashboard");
+
+                    default:
+                        return RedirectToAction("RandevuBilgileri", "Dashboard");
+                }
+
             }
             else
             {
@@ -55,6 +89,12 @@ namespace HastaneRandevuSistemi.Controllers
 
         public IActionResult KayitOl()
         {
+            ClaimsPrincipal claimsPrincipal = HttpContext.User;
+            if (claimsPrincipal.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("RandevuBilgileri", "Dashboard");
+            }
+
             return View();
         }
 
@@ -99,10 +139,10 @@ namespace HastaneRandevuSistemi.Controllers
             return View(kullanici);
         }
 
-        public IActionResult CikisYap()
+        public async Task<IActionResult> CikisYap()
         {
-            HttpContext.Session.Remove("email");
-            return View();
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("AnaSayfa","Home");
         }
     }
 }

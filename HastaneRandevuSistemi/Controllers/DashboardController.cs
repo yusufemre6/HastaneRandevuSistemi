@@ -6,17 +6,14 @@ using HastaneRandevuSistemi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 
 namespace HastaneRandevuSistemi.Controllers
 {
     class RandevuTemsili
     {
-        public int RandevuGun { get; set; }
-        public int RandevuAy { get; set; }
-        public int RandevuYil { get; set; }
-        public int Saat { get; set; }
-        public int Dakika { get; set; }
+        public DateTime RandevuTarihSaat { get; set; }
         public string BransAdi { get; set; }
         public string PoliklinikAdi { get; set; }
         public string HastaneAdi { get; set; }
@@ -24,6 +21,7 @@ namespace HastaneRandevuSistemi.Controllers
         public string DoktorSoyadi { get; set; }
         public string DurumAdi { get; set; }
         public string MuayeneTurAdi { get; set; }
+     
     }
 
     [Authorize(Roles ="2")]
@@ -42,33 +40,37 @@ namespace HastaneRandevuSistemi.Controllers
         [HttpGet]
         public IActionResult RandevuBilgileri()
         {
-            Console.WriteLine("Buradayız");
+            ViewData["Role"] = "2";
+            string kEmail = HttpContext.User.FindFirst(ClaimTypes.Email)?.Value;
 
-            string kEmail = HttpContext.Session.GetString("userEmail");
-            Console.WriteLine(kEmail);
+
             var kullanici = dashContext.Kullanicilar.SingleOrDefault(k => k.KullaniciEmail == kEmail);
             
             _client = new HttpClient();
             _client.BaseAddress = baseAddress;
 
             List<RandevuTemsili> randevularlar = new List<RandevuTemsili>();
-            HttpResponseMessage httpResponseMessage = _client.GetAsync(_client.BaseAddress + "/DashboardApi?&kullaniciID=" + 1).Result;
+            HttpResponseMessage httpResponseMessage = _client.GetAsync(_client.BaseAddress + "/DashboardApi?&kullaniciID=" + kullanici.KullaniciID).Result;
             if (httpResponseMessage.IsSuccessStatusCode)
             {
                 string data = httpResponseMessage.Content.ReadAsStringAsync().Result;
                 randevularlar = JsonConvert.DeserializeObject<List<RandevuTemsili>>(data);
             }
 
+            ViewBag.KullaniciAdi= dashContext.Kullanicilar.SingleOrDefault(u => u.KullaniciEmail == kEmail).KullaniciAdi;
+            ViewBag.KullaniciSoyadi = dashContext.Kullanicilar.SingleOrDefault(u => u.KullaniciEmail == kEmail).KullaniciSoyadi;
             ViewBag.Randevular = randevularlar;
             return View();
         }
 
         public IActionResult HastaneRandevuAl()
         {
+            ViewData["Role"] = "2";
             return View();
         }
         public IActionResult AileHekimiRandevuAl()
         {
+            ViewData["Role"] = "2";
             return View();
         }
     }

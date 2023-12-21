@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using HastaneRandevuSistemi.Models;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Reflection;
 using Microsoft.AspNetCore.Http;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
@@ -23,13 +26,24 @@ namespace HastaneRandevuSistemi.Controllers
         }
 
         [HttpPost]
-        public IActionResult GirisYap(Kullanici kullanici){
+        public async Task<IActionResult> GirisYap(Kullanici kullanici){
 
-            bool userCheck = authContext.Kullanicilar.Any(u => u.KullaniciEmail == kullanici.KullaniciEmail && u.KullaniciSifre == kullanici.KullaniciSifre);
+            var userCheck = authContext.Kullanicilar.SingleOrDefault(u => u.KullaniciEmail == kullanici.KullaniciEmail && u.KullaniciSifre == kullanici.KullaniciSifre);
 
-            if (userCheck)
+            if (userCheck!=null)
             {
-                HttpContext.Session.SetString("userEmail", kullanici.KullaniciEmail);
+                int rolId= authContext.Roller.SingleOrDefault(u => u.KullaniciID == userCheck.KullaniciID).KisiTipiID;
+                var claims = new List<Claim>() {
+                    new Claim(ClaimTypes.Email,kullanici.KullaniciEmail),
+                    new Claim(ClaimTypes.Role,"2")
+                };
+
+                var claimsIdentity = new ClaimsIdentity(claims,CookieAuthenticationDefaults.AuthenticationScheme);
+                var authProperties = new AuthenticationProperties();
+
+
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,new ClaimsPrincipal(claimsIdentity),authProperties);
+                
                 return RedirectToAction("RandevuBilgileri", "Dashboard");
             }
             else

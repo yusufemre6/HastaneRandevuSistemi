@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using HastaneRandevuSistemi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace HastaneRandevuSistemi.Controllers
@@ -25,6 +26,7 @@ namespace HastaneRandevuSistemi.Controllers
         public string MuayeneTurAdi { get; set; }
     }
 
+    [Authorize(Roles ="2")]
     public class DashboardController : Controller
     {
         ApplicationDbContext dashContext = new ApplicationDbContext();

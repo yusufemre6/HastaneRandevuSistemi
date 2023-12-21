@@ -5,10 +5,17 @@ using Microsoft.Extensions.Options;
 using System.Globalization;
 using System.Reflection;
 using static HastaneRandevuSistemi.Services.LanguageService;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+{
+    options.Cookie.Name = "Aktif";
+    options.LoginPath = "/Authentication/GirisYap";
+    options.AccessDeniedPath = "/Authentication/GirisYap";
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(1);
+});
 #region Localizer
 builder.Services.AddSingleton<LanguageService>();
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
@@ -54,6 +61,7 @@ app.UseStaticFiles();
 app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 app.UseSession();
 

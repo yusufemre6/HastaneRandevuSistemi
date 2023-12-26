@@ -44,6 +44,15 @@
                         </p>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <form asp-controller="Dashboard" asp-action="HastaneRandevuAl" method="post">
+                            <input type="hidden" name="id" value=@randevu.RandevuID>
+                            <input type="submit" value="Randevu Al" class="btn btn-primary" />
+                        </form>
+                    </div>
+                    
+                </div>
             </div>
         </div>
     }

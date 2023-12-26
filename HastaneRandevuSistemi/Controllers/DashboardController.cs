@@ -65,6 +65,7 @@ namespace HastaneRandevuSistemi.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult HastaneRandevuAl()
         {
             ViewData["Role"] = "2";
@@ -80,6 +81,27 @@ namespace HastaneRandevuSistemi.Controllers
             }
 
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult HastaneRandevuAl(int id)
+        {
+            string email = HttpContext.User.FindFirst(ClaimTypes.Email)?.Value;
+            var kullanici = dashContext.Kullanicilar.SingleOrDefault(x => x.KullaniciEmail == email);
+
+            var entityToUpdate = dashContext.Randevular.SingleOrDefault(e => e.RandevuID == id);
+
+            // Veriyi güncelle
+            if (entityToUpdate != null)
+            {
+                entityToUpdate.DurumID=1;
+                entityToUpdate.KullaniciID = kullanici.KullaniciID;
+            }
+
+            // Veritabanını güncelle
+            dashContext.SaveChanges();
+
+            return RedirectToAction("RandevuBilgileri");
         }
 
         [HttpPost]

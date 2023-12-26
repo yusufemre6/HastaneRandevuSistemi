@@ -56,6 +56,19 @@
                         </p>
                     </div>
                 </div>
+                @{
+                    if (randevu.DurumAdi != "İptal")
+                    {
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form asp-controller="Dashboard" asp-action="HastaneRandevuSil" method="post">
+                                    <input type="hidden" name="id" value=@randevu.RandevuID>
+                                    <input type="submit" value="Randevu Sil" class="btn btn-danger" />
+                                </form>
+                            </div>
+                        </div>
+                    }
+                }
             </div>
         </div>   
      }

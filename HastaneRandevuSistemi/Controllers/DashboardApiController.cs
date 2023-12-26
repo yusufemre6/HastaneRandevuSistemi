@@ -4,9 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using HastaneRandevuSistemi.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace HastaneRandevuSistemi.Controllers
 {
@@ -20,7 +19,6 @@ namespace HastaneRandevuSistemi.Controllers
         [HttpGet]
         public IQueryable Get(int kullaniciID)
         {
-            Console.WriteLine(kullaniciID);
             var query = from randevu in dashContext.Randevular.Where(r => r.KullaniciID == kullaniciID)
                         join brans in dashContext.Branslar on randevu.BransID equals brans.BransID
                         join poliklinik in dashContext.Poliklinikler on randevu.PoliklinikID equals poliklinik.PoliklinikID
@@ -31,6 +29,7 @@ namespace HastaneRandevuSistemi.Controllers
                         
                         select new
                         {
+                            randevu.RandevuID,
                             randevu.RandevuTarihSaat,
                             brans.BransAdi,
                             poliklinik.PoliklinikAdi,
@@ -45,8 +44,19 @@ namespace HastaneRandevuSistemi.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id)
         {
+            // LINQ sorgusu ile veriyi getir
+            var entityToUpdate = dashContext.Randevular.SingleOrDefault(e => e.RandevuID == id);
+
+            // Veriyi güncelle
+            if (entityToUpdate != null)
+            {
+                entityToUpdate.DurumID = 3;
+            }
+
+            // Veritabanını güncelle
+            dashContext.SaveChanges();
         }
 
         // DELETE api/values/5

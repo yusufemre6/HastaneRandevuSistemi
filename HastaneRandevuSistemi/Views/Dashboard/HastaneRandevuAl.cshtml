@@ -1,85 +1,18 @@
-﻿@{ Layout = "_LayoutDashboard";
+﻿@model Brans
+@{
+    Layout = "_LayoutDashboard";
     ViewData["Css"] = "~/css/HastaneRandevuAl.css";
     ViewData["Title"] = "Hastane Randevu";
 }
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Babanenin Hatırasına</title>
-    <!-- Bootstrap CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="card">
-                    <div class="card-header text-center">
-                        <h3 class="mb-0">Hasta Randevu Formu</h3>
-                    </div>
-                    <div class="card-body">
-                        <form action="submit_form.php" method="post">
-                            <!-- kimlik id -->
-                            <div class="mb-3">
-                                <label for="tckimlik" class="form-label">TC Kimlik Numarası:</label>
-                                <input type="text" id="soyad" name="soyad" class="form-control" required>
-                            </div>
-                            <!-- Ad -->
-                            <div class="mb-3">
-                                <label for="ad" class="form-label">Ad:</label>
-                                <input type="text" id="ad" name="ad" class="form-control" required>
-                            </div>
-
-                            <!-- Soyad -->
-                            <div class="mb-3">
-                                <label for="soyad" class="form-label">Soyad:</label>
-                                <input type="text" id="soyad" name="soyad" class="form-control" required>
-                            </div>
-
-
-                            <!-- Hastane Seçimi -->
-                            <div class="mb-3">
-                                <label for="hastane" class="form-label">Hastane Seç:</label>
-                                <select id="hastane" name="hastane" class="form-select">
-                                    <option value="hastane1">Hastane 1</option>
-                                    <option value="hastane2">Hastane 2</option>
-                                </select>
-                            </div>
-
-                            <!-- Poliklinik Seçimi -->
-                            <div class="mb-3">
-                                <label for="poliklinik" class="form-label">Poliklinik Seç:</label>
-                                <select id="poliklinik" name="poliklinik" class="form-select">
-                                    <option value="poliklinik1">Poliklinik 1</option>
-                                    <option value="poliklinik2">Poliklinik 2</option>
-                                </select>
-                            </div>
-
-                            <!-- Doktor Seçimi -->
-                            <div class="mb-3">
-                                <label for="doktor" class="form-label">Doktor Seç:</label>
-                                <select id="doktor" name="doktor" class="form-select">
-                                    <option value="doktor1">Doktor 1</option>
-                                    <option value="doktor2">Doktor 2</option>
-                                </select>
-                            </div>
-
-                            <!-- Gönder Butonu -->
-                            <div class="mb-3 text-center">
-                                <input type="submit" value="Randevu Al" class="btn btn-primary">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <!-- İkinci sütun içeriği -->
-            </div>
-        </div>
+<form asp-controller="Dashboard" asp-action="HastaneRandevuListele" method="post" class="mt-3">
+    <div class="mb-3">
+        <label asp-for="BransAdi" class="control-label">Bilim Dalı Seç:</label>
+        <select asp-for="BransAdi" class="form-control" asp-items="ViewBag.Branslar">
+        </select>
     </div>
-
-    <!-- Bootstrap JS ve Popper.js CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    
+    <div class="mb-3 text-center">
+        <input type="submit" value="Randevu Ara" class="btn btn-primary">
+    </div>
+</form>

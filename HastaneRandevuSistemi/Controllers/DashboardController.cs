@@ -37,6 +37,7 @@ namespace HastaneRandevuSistemi.Controllers
 
         public IActionResult HesapBilgileri()
         {
+            ViewData["Role"] = "2";
             return View();
         }
 
@@ -79,6 +80,10 @@ namespace HastaneRandevuSistemi.Controllers
             {
                 ViewBag.Branslar.Add(new SelectListItem { Value = item.BransAdi, Text=item.BransAdi });
             }
+
+            string kEmail = HttpContext.User.FindFirst(ClaimTypes.Email)?.Value;
+            ViewBag.KullaniciAdi = dashContext.Kullanicilar.SingleOrDefault(u => u.KullaniciEmail == kEmail).KullaniciAdi;
+            ViewBag.KullaniciSoyadi = dashContext.Kullanicilar.SingleOrDefault(u => u.KullaniciEmail == kEmail).KullaniciSoyadi;
 
             return View();
         }
@@ -140,13 +145,53 @@ namespace HastaneRandevuSistemi.Controllers
 
             ViewBag.Randevular = randevus;
 
+            string kEmail = HttpContext.User.FindFirst(ClaimTypes.Email)?.Value;
+            ViewBag.KullaniciAdi = dashContext.Kullanicilar.SingleOrDefault(u => u.KullaniciEmail == kEmail).KullaniciAdi;
+            ViewBag.KullaniciSoyadi = dashContext.Kullanicilar.SingleOrDefault(u => u.KullaniciEmail == kEmail).KullaniciSoyadi;
+
             return View("HastaneRandevuListele");
         }
 
         public IActionResult AileHekimiRandevuAl()
         {
             ViewData["Role"] = "2";
-            return View();
+
+            int bransId = 11;
+
+            List<Randevu> randevular = new List<Randevu>();
+            randevular = dashContext.Randevular.ToList();
+
+            var query = from randevu in dashContext.Randevular.Where(x => x.BransID == bransId && (x.DurumID == 3 || x.DurumID == 4))
+                        join brans in dashContext.Branslar on randevu.BransID equals brans.BransID
+                        join poliklinik in dashContext.Poliklinikler on randevu.PoliklinikID equals poliklinik.PoliklinikID
+                        join hastane in dashContext.Hastaneler on randevu.HastaneID equals hastane.HastaneID
+                        join doktor in dashContext.Doktorlar on randevu.DoktorID equals doktor.DoktorID
+                        join durum in dashContext.Durumlar on randevu.DurumID equals durum.DurumID
+                        join muayenetur in dashContext.MuayeneTurleri on randevu.MuayeneTurID equals muayenetur.MuayeneTurID
+
+                        select new RandevuTemsili
+                        {
+                            RandevuID = randevu.RandevuID,
+                            RandevuTarihSaat = randevu.RandevuTarihSaat,
+                            BransAdi = brans.BransAdi,
+                            PoliklinikAdi = poliklinik.PoliklinikAdi,
+                            HastaneAdi = hastane.HastaneAdi,
+                            DoktorAdi = doktor.DoktorAdi,
+                            DoktorSoyadi = doktor.DoktorSoyadi,
+                            DurumAdi = durum.DurumAdi,
+                            MuayeneTurAdi = muayenetur.MuayeneTurAdi
+                        };
+
+            List<RandevuTemsili> randevus = query.ToList<RandevuTemsili>();
+
+            ViewBag.Randevular = randevus;
+
+            string kEmail = HttpContext.User.FindFirst(ClaimTypes.Email)?.Value;
+            ViewBag.KullaniciAdi = dashContext.Kullanicilar.SingleOrDefault(u => u.KullaniciEmail == kEmail).KullaniciAdi;
+            ViewBag.KullaniciSoyadi = dashContext.Kullanicilar.SingleOrDefault(u => u.KullaniciEmail == kEmail).KullaniciSoyadi;
+
+            return View("HastaneRandevuListele");
+
         }
 
         [HttpPost]
@@ -160,9 +205,6 @@ namespace HastaneRandevuSistemi.Controllers
             return RedirectToAction("RandevuBilgileri");                   
                   
         }
-
-            
     }
-    
 }
 

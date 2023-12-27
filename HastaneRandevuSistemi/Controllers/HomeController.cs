@@ -10,10 +10,13 @@ namespace HastaneRandevuSistemi.Controllers;
 
 class DoktorTemsili
 {
+    public int doktorId { get; set; }
     public string doktorAdi { get; set; }
     public string doktorSoyadi { get; set; }
     public string cinsiyetAdi { get; set; }
+    public DateTime doktorDt { get; set; }
     public string doktorEmail { get; set; }
+    public string doktorTel { get; set; }
     public string bransAdi { get; set; }
     public string dereceAdi { get; set; }
 }

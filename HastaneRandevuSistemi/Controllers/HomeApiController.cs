@@ -25,10 +25,13 @@ namespace HastaneRandevuSistemi.Controllers
                         join brans in homeContext.Branslar on doktor.BransID equals brans.BransID
                         select new
                         {
+                            doktor.DoktorID,
                             doktor.DoktorAdi,
                             doktor.DoktorSoyadi,
                             cinsiyet.CinsiyetAdi,
+                            doktor.DoktorDt,
                             doktor.DoktorEmail,
+                            doktor.DoktorTelNo,
                             brans.BransAdi,
                             derece.DereceAdi
                         };

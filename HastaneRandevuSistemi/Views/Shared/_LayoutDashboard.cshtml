@@ -4,7 +4,6 @@
 @{ await Html.RenderPartialAsync("_Head");}
 <body class="my-0">
     @{
-        Console.WriteLine(role);
         if (role == "1")
         {
             await Html.RenderPartialAsync("_AdminHeader");

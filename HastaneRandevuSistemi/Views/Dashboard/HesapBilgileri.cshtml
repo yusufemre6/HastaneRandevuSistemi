@@ -2,3 +2,34 @@
     ViewData["Css"] = "";
     ViewData["Title"] = "Hesap Bilgileri";
 }
+
+@model Kullanici
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="mb-4">Kullanıcı Bilgi Formu</h2>
+            <form asp-controller="Dashboard" asp-action="HesapBilgileri" method="post">
+                <div class="mb-3">
+                    <label class="form-label">Adı Soyadı: @ViewBag.Kullanici.KullaniciAdi @ViewBag.Kullanici.KullaniciSoyadi</label>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Doğum Tarihi: @ViewBag.Kullanici.KullaniciDt.ToLocalTime().ToShortDateString()</label>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="KullaniciTelNo" class="form-label">Telefon Numarası:</label>
+                    <input type="text" class="form-control" asp-for="KullaniciTelNo" placeholder="Telefon Numarası" value="@ViewBag.Kullanici.KullaniciTelNo">
+                </div>
+                <div class="mb-3">
+                    <label asp-for="KullaniciEmail" class="form-label">E-posta Adresi:</label>
+                    <input type="email" class="form-control" asp-for="KullaniciEmail" placeholder="E-posta Adresi" value="@ViewBag.Kullanici.KullaniciEmail">
+                </div>
+                <div class="mb-3">
+                    <label asp-for="KullaniciSifre" class="form-label">Şifre:</label>
+                    <input type="password" class="form-control" asp-for="KullaniciSifre" placeholder="Şifre" value="@ViewBag.Kullanici.KullaniciSifre">
+                </div>
+                <input type="submit" class="btn btn-primary" value="Bilgileri Güncelle" />
+            </form>
+        </div>
+    </div>
+</div>

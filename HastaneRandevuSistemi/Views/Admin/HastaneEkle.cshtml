@@ -1,0 +1,44 @@
+﻿@model Hastane
+@{
+    Layout = "_LayoutDashboard";
+    ViewData["Css"] = "";
+    ViewData["Title"] = "Hastane Ekle";
+}
+
+<div class="container mt-5">
+    @{
+        if (ViewBag.HataMsg != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @ViewBag.HataMsg
+            </div>
+        }
+    }
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-center">Hastane Ekle</h2>
+            </div>
+            <div class="card-body">
+                <form asp-controller="Admin" asp-action="HastaneEkle" method="post">
+                    <div class="form-group text-center my-1">
+                        <label asp-for="HastaneAdi">Hastane Adı:</label>
+                        <input type="text" class="form-control" asp-for="HastaneAdi" required>
+                    </div>
+                    <div class="form-group text-center my-1">
+                        <label asp-for="HastaneAdresi">Hastane Adresi:</label>
+                        <input type="text" class="form-control" asp-for="HastaneAdresi" required>
+                    </div>
+                    <div class="form-group text-center my-1">
+                        <label class="control-label">Hastane Türü:</label>
+                        <select asp-for="HastaneTurID" class="form-control" asp-items="ViewBag.HastaneTurleri">
+                        </select>
+                    </div>
+                    <div class="form-group text-center my-1">
+                        <input type="submit" class="btn btn-primary btn-block text-center" value="Ekle" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

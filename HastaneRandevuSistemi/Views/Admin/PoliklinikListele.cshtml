@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "_LayoutDashboard";
+    ViewData["Css"] = "";
+    ViewData["Title"] = "Poliklinikler";
+}
+
+<table class="table table-striped mt-2">
+    <thead>
+        <tr>
+            <th scope="col" class="text-center">Id</th>
+            <th scope="col" class="text-center">Poliklinik Adı</th>
+            <th scope="col" class="text-center">Hastane</th>
+            <th scope="col" class="text-center">Branş</th>
+            <th scope="col" class="text-center">Doktor</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var poliklinik in ViewBag.Poliklinikler)
+            {
+                <tr>
+                    <th scope="row" class="text-center">@poliklinik.PoliklinikId</th>
+                    <td class="text-center">@poliklinik.PoliklinikAdi</td>
+                    <td class="text-center">@poliklinik.HastaneAdi</td>
+                    <td class="text-center">@poliklinik.BransAdi</td>
+                    <td class="text-center">@poliklinik.DoktorAdi</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

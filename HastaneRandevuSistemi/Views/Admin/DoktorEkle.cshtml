@@ -1,0 +1,82 @@
+﻿@model DoktorModel
+@{
+    Layout = "_LayoutDashboard";
+    ViewData["Css"] = "";
+    ViewData["Title"] = "Doktor Ekle";
+}
+
+<div class="mt-3 h-75 rounded rounded-4 custom-scroll-container overflow-auto">
+    @{
+        if (ViewBag.HataMsg != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @ViewBag.HataMsg
+            </div>
+        }
+    }
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-center">Doktor Ekle</h2>
+            </div>
+            <div class="card-body">
+                <form asp-controller="Admin" asp-action="DoktorEkle" method="post">
+                    <div class="form-group text-center my-1">
+                        <label asp-for="DoktorAdi">Doktor Adı</label>
+                        <input type="text" class="form-control" asp-for="DoktorAdi" required>
+                    </div>
+                    <div class="form-group text-center my-1">
+                        <label asp-for="DoktorSoyadi">Doktor Soyadı</label>
+                        <input type="text" class="form-control" asp-for="DoktorSoyadi" required>
+                    </div>
+                    <div class="form-group d-flex align-items-center my-1">
+                        <label asp-for="CinsiyetID">Cinsiyet</label>
+                        <input class="ms-5 me-2" type="radio" asp-for="CinsiyetID" value="1" id="Erkek" style="width:20px" />
+                        <label for="Erkek">
+                            Erkek
+                        </label>
+                        <input class="mx-2" type="radio" asp-for="CinsiyetID" value="2" id="Kadın" style="width:20px" />
+                        <label for="Kadın">
+                            Kadın
+                        </label>
+                        <span asp-validation-for="CinsiyetID" class="text-danger"></span>
+                    </div>
+                    <div class="form-group d-flex align-items-center">
+                        <label asp-for="DoktorDt" class="me-2">Doğum Tarihi</label>
+                        <input asp-for="DoktorDt" type="date">
+                        <span asp-validation-for="DoktorDt" class="text-danger"></span>
+                    </div>
+                    <div class="form-group text-center">
+                        <label asp-for="DoktorEmail">E-Posta</label>
+                        <input asp-for="DoktorEmail" type="text" class="form-control" >
+                        <span asp-validation-for="DoktorEmail" class="text-danger"></span>
+                    </div>
+                    <div class="form-group text-center">
+                        <label asp-for="DoktorTelNo">Telefon Numarası</label>
+                        <input asp-for="DoktorTelNo" type="text" class="form-control">
+                        <span asp-validation-for="DoktorTelNo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group text-center my-1">
+                        <label asp-for="BransID" class="control-label">Branş</label>
+                        <select asp-for="BransID" class="form-control" asp-items="ViewBag.Branslar">
+                        </select>
+                    </div>
+                    <div class="form-group text-center my-1">
+                        <label asp-for="DereceID" class="control-label">Derece</label>
+                        <select asp-for="DereceID" class="form-control" asp-items="ViewBag.Dereceler">
+                        </select>
+                    </div>
+                    <div class="form-group text-center my-1">
+                        <label asp-for="HastaneID" class="control-label">Hastane</label>
+                        <select asp-for="HastaneID" class="form-control" asp-items="ViewBag.Hastaneler">
+                        </select>
+                    </div>
+                    <div class="form-group text-center mt-3 me-1">
+                        <input type="submit" class="btn btn-primary btn-block text-center" value="Ekle" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

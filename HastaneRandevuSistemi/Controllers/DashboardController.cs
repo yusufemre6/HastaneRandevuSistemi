@@ -35,10 +35,42 @@ namespace HastaneRandevuSistemi.Controllers
         Uri baseAddress = new Uri("https://localhost:7178/Api");
         HttpClient _client;
 
+        [HttpGet]
         public IActionResult HesapBilgileri()
         {
             ViewData["Role"] = "2";
+
+            string email = HttpContext.User.FindFirst(ClaimTypes.Email)?.Value;
+            var kullanici = dashContext.Kullanicilar.SingleOrDefault(x => x.KullaniciEmail == email);
+
+            ViewBag.KullaniciAdi = dashContext.Kullanicilar.SingleOrDefault(u => u.KullaniciEmail == email).KullaniciAdi;
+            ViewBag.KullaniciSoyadi = dashContext.Kullanicilar.SingleOrDefault(u => u.KullaniciEmail == email).KullaniciSoyadi;
+
+            ViewBag.Kullanici = kullanici;
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult HesapBilgileri(Kullanici kullanici)
+        {
+            string email = HttpContext.User.FindFirst(ClaimTypes.Email)?.Value;
+            var kullaniciCookie = dashContext.Kullanicilar.SingleOrDefault(x => x.KullaniciEmail == email);
+
+            var entityToUpdate = dashContext.Kullanicilar.SingleOrDefault(e => e.KullaniciID == kullaniciCookie.KullaniciID);
+
+            // Veriyi güncelle
+            if (entityToUpdate != null)
+            {
+                entityToUpdate.KullaniciTelNo = kullanici.KullaniciTelNo;
+                entityToUpdate.KullaniciEmail = kullanici.KullaniciEmail;
+                entityToUpdate.KullaniciSifre = kullanici.KullaniciSifre;
+            }
+
+            // Veritabanını güncelle
+            dashContext.SaveChanges();
+
+            ViewData["Role"] = "2";
+            return RedirectToAction("HesapBilgileri");
         }
 
         [HttpGet]

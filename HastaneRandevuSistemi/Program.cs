@@ -39,7 +39,12 @@ builder.Services.Configure<RequestLocalizationOptions>(options => {
 });
 #endregion
 
+void ConfigureServices(IServiceCollection services)
+{
+    services.AddHostedService<TimedBackgroundService>();
+}
 
+ConfigureServices(builder.Services);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddSession();

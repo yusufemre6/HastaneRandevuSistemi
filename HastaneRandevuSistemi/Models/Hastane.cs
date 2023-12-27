@@ -8,7 +8,7 @@ namespace HastaneRandevuSistemi.Models
         public int HastaneTurID { get; set; }
         public string HastaneAdresi { get; set; }
         public ICollection<Randevu> Randevular{ get; set; }
-
+        public ICollection<Poliklinik> Poliklinikler { get; set; }
     }
 }
 

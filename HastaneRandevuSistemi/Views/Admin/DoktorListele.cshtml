@@ -4,35 +4,37 @@
     ViewData["Title"] = "Doktorlar";
 }
 
-<table class="table table-striped mt-2">
-    <thead>
-        <tr>
-            <th scope="col" class="text-center">Doktor Adı</th>
-            <th scope="col" class="text-center">Doğum tarihi</th>
-            <th scope="col" class="text-center">Branşı</th>
-            <th scope="col" class="text-center">Derecesi</th>
-            <th scope="col" class="text-center">E-Posta</th>
-            <th scope="col" class="text-center">Sil</th>
-        </tr>
-    </thead>
-    <tbody>
-        @{
-            foreach (var doktor in ViewBag.Doktorlar)
-            {
-                <tr>
-                    <td scope="row" class="text-center">@doktor.doktorAdi @doktor.doktorSoyadi</td>
-                    <td class="text-center">@doktor.doktorDt.ToLocalTime().ToShortDateString()</td>
-                    <td class="text-center">@doktor.bransAdi</td>
-                    <td class="text-center">@doktor.dereceAdi</td>
-                    <td class="text-center">@doktor.doktorEmail</td>
-                    <td>
-                        <form class="text-center mb-2" asp-controller="Admin" asp-action="DoktorSil" method="post">
-                            <input type="hidden" name="id" value=@doktor.doktorId>
-                            <input type="submit" value="Doktor Sil" class="btn btn-danger" />
-                        </form>
-                    </td>
-                </tr>
+<div class="h-75 rounded rounded-4 custom-scroll-container overflow-auto">
+    <table class="table table-striped mt-2">
+        <thead>
+            <tr>
+                <th scope="col" class="text-center">Doktor Adı</th>
+                <th scope="col" class="text-center">Doğum tarihi</th>
+                <th scope="col" class="text-center">Branşı</th>
+                <th scope="col" class="text-center">Derecesi</th>
+                <th scope="col" class="text-center">E-Posta</th>
+                <th scope="col" class="text-center">Sil</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var doktor in ViewBag.Doktorlar)
+                {
+                    <tr>
+                        <td scope="row" class="text-center">@doktor.doktorAdi @doktor.doktorSoyadi</td>
+                        <td class="text-center">@doktor.doktorDt.ToLocalTime().ToShortDateString()</td>
+                        <td class="text-center">@doktor.bransAdi</td>
+                        <td class="text-center">@doktor.dereceAdi</td>
+                        <td class="text-center">@doktor.doktorEmail</td>
+                        <td>
+                            <form class="text-center mb-2" asp-controller="Admin" asp-action="DoktorSil" method="post">
+                                <input type="hidden" name="id" value=@doktor.doktorId>
+                                <input type="submit" value="Doktor Sil" class="btn btn-danger" />
+                            </form>
+                        </td>
+                    </tr>
+                }
             }
-        }
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>

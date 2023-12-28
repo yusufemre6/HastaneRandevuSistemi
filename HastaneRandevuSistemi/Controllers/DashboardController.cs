@@ -17,6 +17,7 @@ namespace HastaneRandevuSistemi.Controllers
     {
         public int RandevuID { get; set; }
         public DateTime RandevuTarihSaat { get; set; }
+        public string? HastaAdi { get; set; }
         public string BransAdi { get; set; }
         public string PoliklinikAdi { get; set; }
         public string HastaneAdi { get; set; }

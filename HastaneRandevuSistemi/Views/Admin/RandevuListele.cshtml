@@ -1,0 +1,40 @@
+﻿@{
+    Layout = "_LayoutDashboard";
+    ViewData["Css"] = "";
+    ViewData["Title"] = "Randevular";
+}
+
+<table class="table table-striped mt-2">
+    <thead>
+        <tr>
+            <th scope="col" class="text-center">Hastane</th>
+            <th scope="col" class="text-center">Branş</th>
+            <th scope="col" class="text-center">Poliklinik</th>
+            <th scope="col" class="text-center">Doktor</th>
+            <th scope="col" class="text-center">Tarih</th>
+            <th scope="col" class="text-center">Saat</th>
+            <th scope="col" class="text-center">Sil</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var randevu in ViewBag.Randevular)
+            {
+                <tr>
+                    <td class="text-center">@randevu.HastaneAdi</td>
+                    <td class="text-center">@randevu.BransAdi</td>
+                    <td class="text-center">@randevu.PoliklinikAdi</td>
+                    <td class="text-center">@randevu.DoktorAdi @randevu.DoktorSoyadi</td>
+                    <td class="text-center">@randevu.RandevuTarihSaat.Date</td>
+                    <td class="text-center">@randevu.RandevuTarihSaat.TimeOfDay</td>
+                    <td>
+                        <form class="text-center mb-2" asp-controller="Admin" asp-action="RandevuSil" method="post">
+                            <input type="hidden" name="id" value=@randevu.RandevuID>
+                            <input type="submit" value="Sil" class="btn btn-danger" />
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

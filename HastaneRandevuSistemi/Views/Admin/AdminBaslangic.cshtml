@@ -3,3 +3,23 @@
     ViewData["Css"] = "";
     ViewData["Title"] = "Admin Baslangic";
 }
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-4 text-center">
+            <img src="~/img/hospital2.png" class="card-img-top mx-2 my-2 text-center" width="30">
+            <p class="text-center">Hastane Sayısı</p>
+            <h1 class="text-center">@ViewBag.HastaneSayisi</h1>
+        </div>
+        <div class="col-md-4 text-center">
+            <img src="~/img/medical-team.png" class="card-img-top mx-2 my-2 text-center" width="30">
+            <p class="text-center"> Doktor Sayısı</p>
+            <h1 class="text-center">@ViewBag.DoktorSayisi</h1>
+        </div>
+        <div class="col-md-4 text-center">
+            <img src="~/img/clinic.png" class="card-img-top mx-2 my-2 text-center" width="30">
+            <p class="text-center"> Poliklinik Sayısı</p>
+            <h1 class="text-center">@ViewBag.PoliklinikSayisi</h1>
+        </div>
+    </div>
+</div>

@@ -42,6 +42,10 @@ namespace HastaneRandevuSistemi.Controllers
             ViewBag.KullaniciAdi = adminContext.Kullanicilar.SingleOrDefault(u => u.KullaniciEmail == email).KullaniciAdi;
             ViewBag.KullaniciSoyadi = adminContext.Kullanicilar.SingleOrDefault(u => u.KullaniciEmail == email).KullaniciSoyadi;
 
+            ViewBag.HastaneSayisi = adminContext.Hastaneler.Count();
+            ViewBag.DoktorSayisi = adminContext.Doktorlar.Count();
+            ViewBag.PoliklinikSayisi = adminContext.Poliklinikler.Count();
+
             return View();
 		}
 
@@ -112,6 +116,32 @@ namespace HastaneRandevuSistemi.Controllers
             ViewBag.Poliklinikler = query.ToList();
 
             ViewData["Role"] = "1";
+            return View();
+        }
+
+        public IActionResult RandevuListele()
+        {
+            
+            ViewData["Role"] = "1";
+            var query = from randevu in adminContext.Randevular.Where(r => r.DurumID==1||r.DurumID==3||r.DurumID==4)
+                        join brans in adminContext.Branslar on randevu.BransID equals brans.BransID
+                        join poliklinik in adminContext.Poliklinikler on randevu.PoliklinikID equals poliklinik.PoliklinikID
+                        join hastane in adminContext.Hastaneler on randevu.HastaneID equals hastane.HastaneID
+                        join doktor in adminContext.Doktorlar on randevu.DoktorID equals doktor.DoktorID
+                        
+                        select new RandevuTemsili
+                        {
+                            RandevuID= randevu.RandevuID,
+                            RandevuTarihSaat= randevu.RandevuTarihSaat.ToLocalTime(),
+                            BransAdi= brans.BransAdi,
+                            PoliklinikAdi= poliklinik.PoliklinikAdi,
+                            HastaneAdi= hastane.HastaneAdi,
+                            DoktorAdi= doktor.DoktorAdi,
+                            DoktorSoyadi= doktor.DoktorSoyadi
+                        };
+
+            ViewBag.Randevular = query.ToList();
+
             return View();
         }
 
@@ -272,6 +302,22 @@ namespace HastaneRandevuSistemi.Controllers
             }
             adminContext.SaveChanges();
             return RedirectToAction("HastaneListele");
+        }
+
+        [HttpPost]
+        public IActionResult RandevuSil(int id)
+        {
+            ViewData["Role"] = "1";
+            
+            var entityToDelete = adminContext.Randevular.SingleOrDefault(e => e.RandevuID == id);
+
+            // Veriyi güncelle
+            if (entityToDelete != null)
+            {
+                adminContext.Randevular.Remove(entityToDelete);
+            }
+            adminContext.SaveChanges();
+            return RedirectToAction("RandevuListele");
         }
     }
 }

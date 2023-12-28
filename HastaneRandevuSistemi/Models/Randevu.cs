@@ -5,7 +5,7 @@ namespace HastaneRandevuSistemi.Models
 	public class Randevu
 	{
 		public int RandevuID{ get; set; }
-        public int KullaniciID { get; set; }
+        public int? KullaniciID { get; set; }
         public int BransID { get; set; }
         public int PoliklinikID { get; set; }
         public int HastaneID { get; set; }

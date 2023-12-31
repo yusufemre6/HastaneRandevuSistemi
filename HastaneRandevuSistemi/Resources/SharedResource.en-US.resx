@@ -117,7 +117,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Ana Sayfa" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Dil Seçimi" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Doktor Kadrosu" xml:space="preserve">
+    <value>Medical Staff</value>
+  </data>
+  <data name="Giriş Yap" xml:space="preserve">
+    <value>Sign In</value>
+  </data>
+  <data name="Hakkımızda" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Hastanelerimiz, alanında uzman hekim ve sağlık çalışanları ile hizmet vermektedir. Hastalarımızın memnuniyeti bizim için en önemli önceliktir." xml:space="preserve">
+    <value>"Our hospitals provide services with specialized physicians and healthcare professionals in their respective fields. The satisfaction of our patients is our utmost priority."</value>
+  </data>
+  <data name="Hastanelerimiz, hasta odaklı hizmet veren, alanında lider bir sağlık kuruluşu olmaktır." xml:space="preserve">
+    <value>"Our hospitals aim to be a patient-centered service provider and a leading healthcare institution in the field."</value>
+  </data>
+  <data name="Hastanelerimiz, tüm branşlarda hizmet vermektedir. Acil servis, ameliyathaneler, yoğun bakım üniteleri, laboratuvarlar, görüntüleme merkezi ve diğer tıbbi birimler ile hastalarımıza en iyi sağlık hizmetini sunmak için çalışıyoruz." xml:space="preserve">
+    <value>"Our hospitals provide services in all branches. We work to offer the best healthcare to our patients with emergency services, operating rooms, intensive care units, laboratories, imaging centers, and other medical units."</value>
+  </data>
+  <data name="Kayıt Ol" xml:space="preserve">
+    <value>Sign Up</value>
+  </data>
+  <data name="Misyonumuz" xml:space="preserve">
+    <value>Mission</value>
+  </data>
+  <data name="Sürdürülebilir bir yaşam için ilk adım sağlık." xml:space="preserve">
+    <value>"The first step for a sustainable life is health."</value>
+  </data>
+  <data name="Tüm hastalarımıza en iyi sağlık hizmetini sunmak, onların memnuniyetini sağlamak ve Türkiye'nin  sağlık alanında gelişmesine katkıda bulunmaktır." xml:space="preserve">
+    <value>"To provide the best healthcare service to all our patients, ensure their satisfaction, and contribute to the development of healthcare in Turkey."</value>
+  </data>
+  <data name="Türkçe" xml:space="preserve">
+    <value>Turkish</value>
+  </data>
+  <data name="Vizyonumuz" xml:space="preserve">
+    <value>Vission</value>
+  </data>
   <data name="Welcome" xml:space="preserve">
     <value>Welcome ENG</value>
+  </data>
+  <data name="İletişim" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="İngilizce" xml:space="preserve">
+    <value>English</value>
   </data>
 </root>

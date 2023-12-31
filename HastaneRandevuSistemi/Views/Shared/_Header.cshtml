@@ -7,16 +7,16 @@
         </div>
 
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a class="nav-link text-info px-2" asp-controller="Home" asp-action="AnaSayfa">Ana Sayfa</a></li>
-            <li><a class="nav-link text-info px-2" asp-controller="Home" asp-action="Kadro">Doktor Kadrosu</a></li>
-            <li><a class="nav-link text-info px-2" asp-controller="Home" asp-action="Hakkimizda">Hakkımızda</a></li>
-            <li><a class="nav-link text-info px-2" asp-controller="Home" asp-action="Iletisim">İletişim</a></li>
+            <li><a class="nav-link text-info px-2" asp-controller="Home" asp-action="AnaSayfa">@_localization.Getkey("Ana Sayfa").Value</a></li>
+            <li><a class="nav-link text-info px-2" asp-controller="Home" asp-action="Kadro">@_localization.Getkey("Doktor Kadrosu").Value</a></li>
+            <li><a class="nav-link text-info px-2" asp-controller="Home" asp-action="Hakkimizda">@_localization.Getkey("Hakkımızda").Value</a></li>
+            <li><a class="nav-link text-info px-2" asp-controller="Home" asp-action="Iletisim">@_localization.Getkey("İletişim").Value</a></li>
 
         </ul>
 
         <div class="col-md-3 text-end">
-            <a class="btn btn-outline-danger me-2 text-danger" asp-controller="Authentication" asp-action="GirisYap">Giriş Yap</a>
-            <a class="btn btn-outline-info text-info" asp-controller="Authentication" asp-action="KayitOl">Kayıt Ol</a>
+            <a class="btn btn-outline-danger me-2 text-danger" asp-controller="Authentication" asp-action="GirisYap">@_localization.Getkey("Giriş Yap").Value</a>
+            <a class="btn btn-outline-info text-info" asp-controller="Authentication" asp-action="KayitOl">@_localization.Getkey("Kayıt Ol").Value</a>
         </div>
     </header>
 </div>

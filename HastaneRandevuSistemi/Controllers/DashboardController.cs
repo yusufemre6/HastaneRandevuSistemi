@@ -164,7 +164,7 @@ namespace HastaneRandevuSistemi.Controllers
                         select new RandevuTemsili
                         {
                             RandevuID = randevu.RandevuID,
-                            RandevuTarihSaat = randevu.RandevuTarihSaat,
+                            RandevuTarihSaat = randevu.RandevuTarihSaat.ToLocalTime(),
                             BransAdi = brans.BransAdi,
                             PoliklinikAdi = poliklinik.PoliklinikAdi,
                             HastaneAdi = hastane.HastaneAdi,
@@ -205,7 +205,7 @@ namespace HastaneRandevuSistemi.Controllers
                         select new RandevuTemsili
                         {
                             RandevuID = randevu.RandevuID,
-                            RandevuTarihSaat = randevu.RandevuTarihSaat,
+                            RandevuTarihSaat = randevu.RandevuTarihSaat.ToLocalTime(),
                             BransAdi = brans.BransAdi,
                             PoliklinikAdi = poliklinik.PoliklinikAdi,
                             HastaneAdi = hastane.HastaneAdi,

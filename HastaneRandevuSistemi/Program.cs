@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Reflection;
 using static HastaneRandevuSistemi.Services.LanguageService;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using FluentValidation.AspNetCore;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -42,11 +43,12 @@ builder.Services.Configure<RequestLocalizationOptions>(options => {
 void ConfigureServices(IServiceCollection services)
 {
     services.AddHostedService<TimedBackgroundService>();
+	
 }
 
-//ConfigureServices(builder.Services);
+ConfigureServices(builder.Services);
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<Program>());
 builder.Services.AddSession();
 
 

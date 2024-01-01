@@ -1,3 +1,4 @@
+using FluentValidation;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -26,3 +27,4 @@ public class Kullanici {
     public ICollection<Randevu> Randevular { get; set; }
     public ICollection<Rol> Roller { get; set; }
 }
+

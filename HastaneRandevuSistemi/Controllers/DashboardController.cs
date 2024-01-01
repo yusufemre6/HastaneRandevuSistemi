@@ -189,7 +189,7 @@ namespace HastaneRandevuSistemi.Controllers
         {
             ViewData["Role"] = "2";
 
-            int bransId = 11;
+            int bransId =11;
 
             List<Randevu> randevular = new List<Randevu>();
             randevular = dashContext.Randevular.ToList();
